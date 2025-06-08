@@ -1,12 +1,12 @@
-import Sidebar from "../components/layout/Sidebar";
-import Stepper from "../components/step/Stepper";
+import Sidebar from "./Sidebar";
+import Stepper from "../features/steps/components/Stepper";
 
-import { stepsData } from "../constants/steps";
-import { StepProvider } from "../contexts/stepContextProvider/StepProvider";
+import { stepsData } from "../features/steps/constants";
+import { StepsProvider } from "../features/steps/contexts/stepsContextProvider/StepsProvider";
 const Layout = ({ children }) => {
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
-      <StepProvider>
+      <StepsProvider>
         <Sidebar
           titleClassName="bg-blue-800 text-white p-2"
           title="Your Progress"
@@ -16,7 +16,7 @@ const Layout = ({ children }) => {
         <main className="max-h-screen overflow-auto flex-1 bg-gray-50 transition-all">
           {children}
         </main>
-      </StepProvider>
+      </StepsProvider>
     </div>
   );
 };

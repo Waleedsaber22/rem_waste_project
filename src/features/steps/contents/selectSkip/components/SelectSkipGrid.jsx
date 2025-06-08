@@ -1,7 +1,6 @@
 import SelectSkipCard from "./SelectSkipCard";
 
 const SelectSkipGrid = ({ skipOptions }) => {
-  useStep;
   const handleSelect = () => {};
 
   return (

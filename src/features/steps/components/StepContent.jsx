@@ -1,5 +1,5 @@
 import { ImageOffIcon } from "lucide-react";
-import SelectSkip from "../../views/steps/selectSkip/SelectSkip";
+import SelectSkip from "../contents/selectSkip/SelectSkip";
 
 const StepContent = ({ view }) => {
   switch (view) {

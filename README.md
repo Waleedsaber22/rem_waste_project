@@ -59,3 +59,63 @@ This challenge demonstrates my skills in:
 npm install
 npm run dev
 ```
+
+## 🛠️ Implementation
+
+### 1. 🔧 Project Initialization & Setup
+
+- Bootstrapped the project using Vite for a fast and optimized development experience.
+- Configured Tailwind CSS for utility-first styling and responsive design.
+- Adopted a feature-first folder structure to enhance maintainability and separation of concerns.
+  #### Project Structure
+  ```
+  src/
+  │
+  ├── components/
+  │ └── ui/ # Reusable shared UI components (e.g. Button, Modal)
+  │ └── Button.jsx
+  │
+  ├── features/ # Feature-based domain modules
+  │ └── steps/ # The "steps" feature module
+  │ ├── components/ # UI components specific to steps flow
+  │ ├── constants/ # Feature-level constants (e.g. config, enums)
+  │ ├── contexts/
+  │ │ └── stepsContextProvider/ # Local context and provider for step state
+  │ │ ├── StepsContext.jsx
+  │ │ ├── StepsProvider.jsx
+  │ │ └── StepsReducer.js
+  │ ├── index.js # Re-export entry point for step feature
+  │ ├── utils/ # Utility functions used in steps logic
+  │ │ └── index.js
+  │ └── contents/
+  │ └── selectSkip/ # Sub-feature: Select/Skip functionality
+  │ ├── components/
+  │ │ ├── SelectSkipCard.jsx
+  │ │ └── SelectSkipGrid.jsx
+  │ ├── hooks/
+  │ │ └── useGetSkipSteps.js
+  │ └── SelectSkip.jsx
+  │
+  ├── hooks/ # Shared custom hooks
+  │ └── useGetQuery.js
+  │
+  ├── layouts/ # Structural layouts of pages
+  │ ├── Layout.jsx
+  │ └── Sidebar.jsx
+  │
+  ├── App.jsx # Main application component
+  ├── main.jsx # Entry point (ReactDOM.render)
+  ├── App.css # Global styles
+  └── index.css # Base styles / resets
+  ```
+
+### 2. 🧱 Page Layout & Structural Components
+
+- Built a reusable `Layout` component to manage the overall page scaffold (Header, Sidebar, and Main Content).
+- Implemented a `Sidebar` containing the step progress indicator to guide user interaction.
+- Ensured mobile-first responsive design with accessibility best practices.
+
+### 3. 🌐 Data Fetching & Custom Hooks
+
+- Encapsulated API logic in reusable custom hooks:
+  - `useGetQuery` – shared query hook used across multiple components.

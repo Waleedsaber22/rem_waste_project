@@ -1,4 +1,4 @@
-import { useCurrentStep } from "../../contexts/stepContextProvider/StepContext";
+import { useCurrentStep } from "../contexts/stepsContextProvider/StepsContext";
 import StepContent from "./StepContent";
 import StepMovement from "./StepMovement";
 const StepHeader = ({ label, Icon }) => {

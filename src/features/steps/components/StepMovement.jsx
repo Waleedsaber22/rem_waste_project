@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
-import { Button } from "../ui/Button";
+import { Button } from "../../../components/ui/Button";
 
-import { useCurrentStep } from "../../contexts/stepContextProvider/StepContext";
-import { useStepContext } from "../../contexts/stepContextProvider/StepContext";
+import { useCurrentStep } from "../contexts/stepsContextProvider/StepsContext";
+import { useStepsContext } from "../contexts/stepsContextProvider/StepsContext";
 
 const StepMovement = () => {
-  const { next, prev } = useStepContext();
+  const { next, prev } = useStepsContext();
   const { hasPrev, hasNext, label } = useCurrentStep();
 
   return (

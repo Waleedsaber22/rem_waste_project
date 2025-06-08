@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button } from "../../../../components/ui/Button";
+import { Button } from "../../../../../components/ui/Button";
 import { Check } from "lucide-react";
 const SelectSkipCardImage = ({ url, size }) => {
   const [isError, setIsError] = useState(null);

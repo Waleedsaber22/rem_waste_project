@@ -1,19 +1,19 @@
-import { stepsData } from "../../constants/steps";
-import { stepUtils } from "../../utils/step";
+import { stepsData } from "../../constants";
+import { stepsUtils } from "../../utils";
 
-const steps = stepUtils.convertStepsArrToObj(stepsData);
+const steps = stepsUtils.convertStepsArrToObj(stepsData);
 export const initialStepState = {
   currentStepKey: stepsData[0]?.key,
   steps,
 };
 
-export const stepReducer = (state, action) => {
+export const stepsReducer = (state, action) => {
   switch (action.type) {
     case "NEXT":
     case "PREV": {
       const move = action.type === "NEXT" ? 1 : -1;
       const index =
-        stepUtils.getStepOrderByKey(stepsData, state.currentStepKey) - 1;
+        stepsUtils.getStepOrderByKey(stepsData, state.currentStepKey) - 1;
       const movedStep = stepsData[index + move]?.key;
       return movedStep ? { ...state, currentStepKey: movedStep } : state;
     }

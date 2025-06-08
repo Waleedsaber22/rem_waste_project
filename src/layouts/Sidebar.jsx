@@ -3,7 +3,7 @@ import { Dialog, Transition, TransitionChild } from "@headlessui/react";
 import { Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
 import { useMediaQuery } from "react-responsive";
-import { Button } from "../ui/Button";
+import { Button } from "../components/ui/Button";
 
 const Sidebar = ({
   children,

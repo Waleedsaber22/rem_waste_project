@@ -1,14 +1,14 @@
 import {
   useCurrentStep,
-  useStepContext,
-} from "../../contexts/stepContextProvider/StepContext";
+  useStepsContext,
+} from "../contexts/stepsContextProvider/StepsContext";
 
 const Stepper = ({
   steps = [],
   enableStickWithOrder = false,
   className = "",
 }) => {
-  const { setCurrentStep } = useStepContext();
+  const { setCurrentStep } = useStepsContext();
   const currentStep = useCurrentStep();
 
   const allowTillOrder = enableStickWithOrder ? currentStep.order : undefined;

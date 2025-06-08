@@ -1,6 +1,6 @@
 import { LoaderCircle } from "lucide-react";
-import useGetSkipSteps from "../../../hooks/steps/useGetSkipSteps";
 import SelectSkipGrid from "./components/SelectSkipGrid";
+import useGetSkipSteps from "./hooks/useGetSkipSteps";
 
 const SelectSkip = () => {
   const { data, isLoading } = useGetSkipSteps({

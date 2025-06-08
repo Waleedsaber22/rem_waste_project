@@ -1,4 +1,4 @@
-export const stepUtils = {
+export const stepsUtils = {
   /*
     Calculating order from 1 to n
   */

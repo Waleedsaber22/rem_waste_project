@@ -1,9 +1,9 @@
 import { useReducer } from "react";
-import { StepContext } from "./StepContext";
-import { stepReducer, initialStepState } from "./StepReducer";
+import { StepsContext } from "./StepsContext";
+import { stepsReducer, initialStepState } from "./StepsReducer";
 
-export const StepProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(stepReducer, initialStepState);
+export const StepsProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(stepsReducer, initialStepState);
 
   const setStepData = (key, value) =>
     dispatch({ type: "SET_DATA", payload: { key, value } });
@@ -19,5 +19,7 @@ export const StepProvider = ({ children }) => {
     reset: () => dispatch({ type: "RESET" }),
   };
 
-  return <StepContext.Provider value={value}>{children}</StepContext.Provider>;
+  return (
+    <StepsContext.Provider value={value}>{children}</StepsContext.Provider>
+  );
 };
