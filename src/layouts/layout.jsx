@@ -1,6 +1,6 @@
 import React from "react";
-import Sidebar from "../components/Sidebar";
-import Stepper from "../components/Stepper";
+import Sidebar from "../components/layout/Sidebar";
+import Stepper from "../components/step/Stepper";
 import {
   Calendar1Icon,
   CreditCardIcon,
@@ -20,7 +20,7 @@ const Layout = ({ children }) => {
         >
           <Stepper enableStickWithOrder steps={stepsData} />
         </Sidebar>
-        <main className="flex-1 p-6 bg-gray-50 transition-all">{children}</main>
+        <main className="flex-1 bg-gray-50 transition-all">{children}</main>
       </StepProvider>
     </div>
   );

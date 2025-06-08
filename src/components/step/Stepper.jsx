@@ -1,7 +1,7 @@
 import {
   useCurrentStep,
   useStepContext,
-} from "../contexts/stepContextProvider/StepContext";
+} from "../../contexts/stepContextProvider/StepContext";
 
 const Stepper = ({ steps = [], enableStickWithOrder = false }) => {
   const { setCurrentStep } = useStepContext();

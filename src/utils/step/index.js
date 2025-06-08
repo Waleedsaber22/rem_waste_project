@@ -11,9 +11,15 @@ export const stepUtils = {
   */
   convertStepsArrToObj(stepsArr) {
     return stepsArr.reduce(
-      (prevSteps, curr, index) => ({
+      (prevSteps, curr, index, arr) => ({
         ...prevSteps,
-        [curr.key]: { order: index + 1, data: {}, ...curr },
+        [curr.key]: {
+          order: index + 1,
+          hasNext: arr.length !== index + 1,
+          hasPrev: index !== 0,
+          data: {},
+          ...curr,
+        },
       }),
       {}
     );

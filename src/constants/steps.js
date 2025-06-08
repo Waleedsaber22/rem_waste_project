@@ -4,6 +4,7 @@ import {
   TruckIcon,
   Calendar1Icon,
   CreditCardIcon,
+  ShieldIcon,
 } from "lucide-react";
 
 export const stepsData = [
@@ -16,6 +17,11 @@ export const stepsData = [
     label: "Waste Type",
     key: "wasteType",
     Icon: TrashIcon,
+  },
+  {
+    label: "Select Skip",
+    key: "selectSkip",
+    Icon: ShieldIcon,
   },
   {
     label: "Permit Check",

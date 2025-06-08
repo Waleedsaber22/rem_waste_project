@@ -11,8 +11,9 @@ export const stepReducer = (state, action) => {
   switch (action.type) {
     case "NEXT":
     case "PREV": {
-      const move = action.Type === "NEXT" ? 1 : -1;
-      const index = stepUtils.getStepOrderByKey(stepsData, action) - 1;
+      const move = action.type === "NEXT" ? 1 : -1;
+      const index =
+        stepUtils.getStepOrderByKey(stepsData, state.currentStepKey) - 1;
       const movedStep = stepsData[index + move]?.key;
       return movedStep ? { ...state, currentStepKey: movedStep } : state;
     }

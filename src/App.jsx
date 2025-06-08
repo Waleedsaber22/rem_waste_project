@@ -1,5 +1,5 @@
 import "./App.css";
-import StepView from "./components/StepView";
+import StepView from "./components/step/StepView";
 import Layout from "./layouts/Layout";
 
 const App = () => {
