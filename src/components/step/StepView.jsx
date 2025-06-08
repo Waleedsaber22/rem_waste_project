@@ -5,7 +5,7 @@ const StepHeader = ({ label, Icon }) => {
   const ComponentIcon = Icon;
   return (
     <div
-      className="flex items-center justify-center gap-2 p-2
+      className="flex items-center justify-center gap-2 p-2 lg:p-4
   bg-blue-700 text-gray-100 text-lg sm:text-2xl lg:text-4xl"
     >
       <ComponentIcon width="30" height="30" /> {label}
@@ -14,11 +14,11 @@ const StepHeader = ({ label, Icon }) => {
 };
 
 const StepView = () => {
-  const { label, Icon } = useCurrentStep();
+  const { label, Icon, key } = useCurrentStep();
   return (
     <div>
       <StepHeader label={label} Icon={Icon} />
-      <StepContent />
+      <StepContent view={key} />
       <StepMovement />
     </div>
   );

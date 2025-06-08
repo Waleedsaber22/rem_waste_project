@@ -18,9 +18,11 @@ const Layout = ({ children }) => {
           titleClassName="bg-blue-800 text-white p-2"
           title="Your Progress"
         >
-          <Stepper enableStickWithOrder steps={stepsData} />
+          <Stepper className="p-4" enableStickWithOrder steps={stepsData} />
         </Sidebar>
-        <main className="flex-1 bg-gray-50 transition-all">{children}</main>
+        <main className="max-h-screen overflow-auto flex-1 bg-gray-50 transition-all">
+          {children}
+        </main>
       </StepProvider>
     </div>
   );

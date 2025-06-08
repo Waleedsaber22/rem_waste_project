@@ -21,12 +21,12 @@ export const stepsData = [
   {
     label: "Select Skip",
     key: "selectSkip",
-    Icon: ShieldIcon,
+    Icon: TruckIcon,
   },
   {
     label: "Permit Check",
     key: "permitCheck",
-    Icon: TruckIcon,
+    Icon: ShieldIcon,
   },
   {
     label: "Choose Date",

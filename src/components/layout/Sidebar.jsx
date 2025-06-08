@@ -3,6 +3,7 @@ import { Dialog, Transition, TransitionChild } from "@headlessui/react";
 import { Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
 import { useMediaQuery } from "react-responsive";
+import { Button } from "../ui/Button";
 
 const Sidebar = ({
   children,
@@ -10,8 +11,8 @@ const Sidebar = ({
   className = "",
   titleClassName = "",
 }) => {
-  const isMobile = useMediaQuery({ maxWidth: 767 });
-  const [isOpen, setIsOpen] = useState(false);
+  const isMobile = useMediaQuery({ maxWidth: 867 });
+  const [isOpen, setIsOpen] = useState(true);
 
   const SidebarContent = (
     <div className={`w-64 bg-white shadow-lg h-full ${className}`}>
@@ -23,20 +24,20 @@ const Sidebar = ({
           <X size={20} />
         </button>
       </div>
-      <div className="p-6">{children}</div>
+      {children}
     </div>
   );
 
   return (
     <>
       {/* Toggle Button */}
-      {!isOpen || !isMobile ? (
-        <button
+      {!isOpen && isMobile ? (
+        <Button
           onClick={() => setIsOpen((prev) => !prev)}
           className="fixed top-4 left-4 z-50 p-2 bg-white shadow-lg rounded-md md:relative md:z-auto md:top-0 md:left-0"
         >
-          {isOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
+          <Menu size={20} />
+        </Button>
       ) : null}
 
       {/* Mobile Overlay */}
@@ -67,19 +68,7 @@ const Sidebar = ({
           </div>
         </Dialog>
       </Transition>
-
-      {/* Desktop Collapsible */}
-      {!isMobile && isOpen && (
-        <motion.aside
-          initial={{ x: -280 }}
-          animate={{ x: 0 }}
-          exit={{ x: -280 }}
-          transition={{ duration: 0.3 }}
-          className="relative"
-        >
-          {SidebarContent}
-        </motion.aside>
-      )}
+      {!isMobile ? <div>{SidebarContent}</div> : null}
     </>
   );
 };

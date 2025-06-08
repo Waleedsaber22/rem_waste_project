@@ -3,13 +3,17 @@ import {
   useStepContext,
 } from "../../contexts/stepContextProvider/StepContext";
 
-const Stepper = ({ steps = [], enableStickWithOrder = false }) => {
+const Stepper = ({
+  steps = [],
+  enableStickWithOrder = false,
+  className = "",
+}) => {
   const { setCurrentStep } = useStepContext();
   const currentStep = useCurrentStep();
 
   const allowTillOrder = enableStickWithOrder ? currentStep.order : undefined;
   return (
-    <ol className="space-y-4">
+    <ol className={`space-y-4 ${className}`}>
       {steps.map(({ key, label, Icon }, index) => {
         const ComponentIcon = Icon;
         return (
@@ -22,7 +26,7 @@ const Stepper = ({ steps = [], enableStickWithOrder = false }) => {
                 ? "border-gray-300 text-gray-400 pointer-events-none"
                 : key === currentStep.key
                 ? "border-blue-500 text-blue-700 font-semibold"
-                : "border-gray-300 text-gray-600 cursor-pointer"
+                : "border-gray-600 text-gray-600 cursor-pointer"
             }`}
           >
             <div className="flex gap-2 items-center">
