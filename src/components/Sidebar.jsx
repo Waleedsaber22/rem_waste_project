@@ -23,12 +23,14 @@ const Sidebar = ({ children, title = "Sidebar", className = "" }) => {
   return (
     <>
       {/* Toggle Button */}
-      <button
-        onClick={() => setIsOpen((prev) => !prev)}
-        className="fixed top-4 left-4 z-50 p-2 bg-white shadow-lg rounded-md md:relative md:z-auto md:top-0 md:left-0"
-      >
-        {isOpen ? <X size={20} /> : <Menu size={20} />}
-      </button>
+      {!isOpen || !isMobile ? (
+        <button
+          onClick={() => setIsOpen((prev) => !prev)}
+          className="fixed top-4 left-4 z-50 p-2 bg-white shadow-lg rounded-md md:relative md:z-auto md:top-0 md:left-0"
+        >
+          {isOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
+      ) : null}
 
       {/* Mobile Overlay */}
       <Transition show={isMobile && isOpen} as={React.Fragment}>
