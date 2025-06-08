@@ -1,39 +1,37 @@
-import { useMemo } from "react";
+import {
+  useCurrentStep,
+  useStepContext,
+} from "../contexts/stepContextProvider/StepContext";
 
-const Stepper = ({
-  steps = [],
-  onStepChange = () => {},
-  currentStep = steps[0]?.key,
-  allowTillStep = undefined,
-}) => {
-  const allowTillIndex = useMemo(
-    () =>
-      allowTillStep
-        ? steps.findIndex(({ key }) => key === allowTillStep) || 0
-        : steps.length,
-    [steps, allowTillStep]
-  );
+const Stepper = ({ steps = [], enableStickWithOrder = false }) => {
+  const { setCurrentStep } = useStepContext();
+  const currentStep = useCurrentStep();
 
+  const allowTillOrder = enableStickWithOrder ? currentStep.order : undefined;
   return (
     <ol className="space-y-4">
-      {steps.map(({ key, name, icon }, index) => (
-        <li
-          onClick={() => onStepChange(key)}
-          key={key}
-          className={`pl-4 border-l-4 transition-colors duration-300
+      {steps.map(({ key, label, Icon }, index) => {
+        const ComponentIcon = Icon;
+        return (
+          <li
+            onClick={() => setCurrentStep(key)}
+            key={key}
+            className={`pl-4 border-l-4 transition-colors duration-300
             ${
-              index > allowTillIndex
+              index + 1 > allowTillOrder
                 ? "border-gray-300 text-gray-400 pointer-events-none"
-                : key === currentStep
+                : key === currentStep.key
                 ? "border-blue-500 text-blue-700 font-semibold"
                 : "border-gray-300 text-gray-600 cursor-pointer"
             }`}
-        >
-          <div className="flex gap-2 items-center">
-            {icon} {name}
-          </div>
-        </li>
-      ))}
+          >
+            <div className="flex gap-2 items-center">
+              <ComponentIcon />
+              {label}
+            </div>
+          </li>
+        );
+      })}
     </ol>
   );
 };

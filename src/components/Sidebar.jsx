@@ -4,19 +4,26 @@ import { Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
 import { useMediaQuery } from "react-responsive";
 
-const Sidebar = ({ children, title = "Sidebar", className = "" }) => {
+const Sidebar = ({
+  children,
+  title = "Sidebar",
+  className = "",
+  titleClassName = "",
+}) => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
   const [isOpen, setIsOpen] = useState(false);
 
   const SidebarContent = (
-    <div className={`w-64 bg-white shadow-lg p-6 h-full ${className}`}>
-      <div className="flex justify-between items-center mb-4">
+    <div className={`w-64 bg-white shadow-lg h-full ${className}`}>
+      <div
+        className={`flex justify-between items-center mb-4 ${titleClassName}`}
+      >
         <h2 className="text-xl font-bold">{title}</h2>
         <button onClick={() => setIsOpen(false)} className="md:hidden">
           <X size={20} />
         </button>
       </div>
-      <div>{children}</div>
+      <div className="p-6">{children}</div>
     </div>
   );
 

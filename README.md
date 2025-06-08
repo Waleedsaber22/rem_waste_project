@@ -49,7 +49,7 @@ This challenge demonstrates my skills in:
 - **Tailwind CSS** – utility-first approach for complete layout control
 - **Custom Components** – especially a handcrafted Progress Sidebar to demonstrate design skills
 - **JavaScript** – kept it clean and fast, avoiding TS unless required
-- **State Management:** Maybe using Local component state only (no need for global tools like Redux or Context in this scope)
+- **State Management:** Maybe using context states only (no need for complex global tools like Redux)
 
 ---
 
