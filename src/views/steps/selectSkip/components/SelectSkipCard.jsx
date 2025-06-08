@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "../../../../components/ui/Button";
 import { Check } from "lucide-react";
-const SkipCardImage = ({ url, size }) => {
+const SelectSkipCardImage = ({ url, size }) => {
   const [isError, setIsError] = useState(null);
   return (
     <>
@@ -20,7 +20,7 @@ const SkipCardImage = ({ url, size }) => {
     </>
   );
 };
-const SkipCard = ({ size, hirePeriod, priceBeforeVat, onSelect }) => {
+const SelectSkipCard = ({ size, hirePeriod, priceBeforeVat, onSelect }) => {
   return (
     <div
       onClick={onSelect}
@@ -31,7 +31,7 @@ const SkipCard = ({ size, hirePeriod, priceBeforeVat, onSelect }) => {
       <div className="absolute w-full p-2 bg-gray-100">
         <Check className="text-blue-700" />
       </div>
-      <SkipCardImage
+      <SelectSkipCardImage
         size={size}
         url={`/skips/skip-sizes/${size}-yarder-skip.jpg`}
       />
@@ -66,4 +66,4 @@ const SkipCard = ({ size, hirePeriod, priceBeforeVat, onSelect }) => {
   );
 };
 
-export default SkipCard;
+export default SelectSkipCard;

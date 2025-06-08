@@ -1,12 +1,13 @@
-import SkipCard from "./SkipCard";
+import SelectSkipCard from "./SelectSkipCard";
 
-const SkipGrid = ({ skipOptions }) => {
+const SelectSkipGrid = ({ skipOptions }) => {
+  useStep;
   const handleSelect = () => {};
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
       {skipOptions?.map((skip) => (
-        <SkipCard
+        <SelectSkipCard
           key={skip.id}
           size={skip.size}
           hirePeriod={skip.hire_period_days}
@@ -18,4 +19,4 @@ const SkipGrid = ({ skipOptions }) => {
   );
 };
 
-export default SkipGrid;
+export default SelectSkipGrid;

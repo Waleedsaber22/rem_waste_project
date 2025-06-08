@@ -1,13 +1,6 @@
-import React from "react";
 import Sidebar from "../components/layout/Sidebar";
 import Stepper from "../components/step/Stepper";
-import {
-  Calendar1Icon,
-  CreditCardIcon,
-  MapIcon,
-  TrashIcon,
-  TruckIcon,
-} from "lucide-react";
+
 import { stepsData } from "../constants/steps";
 import { StepProvider } from "../contexts/stepContextProvider/StepProvider";
 const Layout = ({ children }) => {

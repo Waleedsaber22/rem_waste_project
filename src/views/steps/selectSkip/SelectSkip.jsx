@@ -1,6 +1,6 @@
 import { LoaderCircle } from "lucide-react";
 import useGetSkipSteps from "../../../hooks/steps/useGetSkipSteps";
-import SkipGrid from "./components/SkipGrid";
+import SelectSkipGrid from "./components/SelectSkipGrid";
 
 const SelectSkip = () => {
   const { data, isLoading } = useGetSkipSteps({
@@ -15,7 +15,7 @@ const SelectSkip = () => {
           <LoaderCircle size={80} className="animate-spin text-blue-700" />
         </div>
       ) : (
-        <SkipGrid skipOptions={data} />
+        <SelectSkipGrid skipOptions={data} />
       )}
     </div>
   );
