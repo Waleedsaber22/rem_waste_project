@@ -75,6 +75,9 @@ npm run dev
   │ └── ui/ # Reusable shared UI components (e.g. Button, Modal)
   │ └── Button.jsx
   │
+  ├── contexts/ # Global contexts
+  │ └── themeContextProvider/ # Global Theme Support
+  │
   ├── features/ # Feature-based domain modules
   │ └── steps/ # The "steps" feature module
   │ ├── components/ # UI components specific to steps flow
@@ -115,7 +118,21 @@ npm run dev
 - Implemented a `Sidebar` containing the step progress indicator to guide user interaction.
 - Ensured mobile-first responsive design with accessibility best practices.
 
+### 3. 🌐 Data Fetching & Custom Hooks
+
+- Encapsulated API logic in reusable custom hooks:
+- `useGetQuery` – shared query hook used across multiple components.
+- `useLocalStorage` – save user activity through this hook inside `LocalStorage`.
+
 ### 4. 🎨 Global Theme Support
 
 - Used `ThemeProvider` to apply and manage global theme variables.
 - Ensured consistent branding by propagating custom colors and styles throughout the application.
+
+### 5. 🧩 Step Management & Local State Persistence
+
+- Implemented a robust `StepsProvider` using React's Context and Reducer patterns to manage multi-step user flows.
+- Defined `StepsReducer` with action-based state transitions for `NEXT`, `PREV`, `SET_STEP`, `SET_DATA`, and `RESET` behaviors.
+- Integrated `localStorage` persistence logic to store and rehydrate user step data seamlessly across sessions.
+- Enabled smart navigation behavior, including conditional control of the "Next" action based on step-specific form data (`enableNextMove`).
+- Utilized custom step utility functions to convert, access, and mutate step structure in an optimized and declarative manner.
