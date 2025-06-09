@@ -1,3 +1,4 @@
+import { useThemeContext } from "../../../contexts/themeContextProvider/ThemeContext";
 import {
   useCurrentStep,
   useStepsContext,
@@ -8,6 +9,7 @@ const Stepper = ({
   enableStickWithOrder = false,
   className = "",
 }) => {
+  const { primaryColors } = useThemeContext();
   const { setCurrentStep } = useStepsContext();
   const currentStep = useCurrentStep();
 
@@ -25,7 +27,7 @@ const Stepper = ({
               index + 1 > allowTillOrder
                 ? "border-gray-300 text-gray-400 pointer-events-none"
                 : key === currentStep.key
-                ? "border-blue-500 text-blue-700 font-semibold"
+                ? `border-blue-500 ${primaryColors.text} font-semibold`
                 : "border-gray-600 text-gray-600 cursor-pointer"
             }`}
           >

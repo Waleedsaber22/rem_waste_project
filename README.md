@@ -115,7 +115,7 @@ npm run dev
 - Implemented a `Sidebar` containing the step progress indicator to guide user interaction.
 - Ensured mobile-first responsive design with accessibility best practices.
 
-### 3. 🌐 Data Fetching & Custom Hooks
+### 4. 🎨 Global Theme Support
 
-- Encapsulated API logic in reusable custom hooks:
-  - `useGetQuery` – shared query hook used across multiple components.
+- Used `ThemeProvider` to apply and manage global theme variables.
+- Ensured consistent branding by propagating custom colors and styles throughout the application.

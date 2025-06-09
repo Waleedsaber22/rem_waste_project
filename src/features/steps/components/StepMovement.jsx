@@ -6,8 +6,15 @@ import { useStepsContext } from "../contexts/stepsContextProvider/StepsContext";
 import StepFormDataView from "./StepFormDataView";
 import { useEffect, useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import { useThemeContext } from "../../../contexts/themeContextProvider/ThemeContext";
 
 const StepMovement = () => {
+  const {
+    primaryColors,
+    primaryLightColors,
+    secondaryColors,
+    secondaryLightColors,
+  } = useThemeContext();
   const { next, prev } = useStepsContext();
   const [collapsed, setCollapsed] = useState(true);
   const { hasPrev, hasNext, enableNextMove, details } = useCurrentStep();
@@ -20,9 +27,9 @@ const StepMovement = () => {
       <div className="mt-[50px]"></div>
       <Button
         onClick={() => setCollapsed((prev) => !prev)}
-        className="fixed z-[100] bottom-[20px] right-[-10px] sm:right-0 -translate-x-1/2 z-50 
-        bg-blue-700 text-white shadow-md border border-blue-200 
-        rounded-full p-1 hover:bg-gray-100 hover:text-blue-700 !px-2 sm:!px-4"
+        className={`fixed z-[100] bottom-[20px] right-[-10px] sm:right-0 -translate-x-1/2 z-50 
+        ${primaryColors.bg} text-white shadow-md border border-blue-200 
+        rounded-full p-1 ${secondaryColors.bgHover} ${primaryColors.textHover} !px-2 sm:!px-4`}
       >
         {collapsed ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
       </Button>
@@ -35,11 +42,11 @@ const StepMovement = () => {
             transition={{ duration: 0.4 }}
             className="fixed bottom-4 left-1/2 w-3/4 lg:w-1/2 -translate-x-1/2 z-50
           flex gap-4 border-2 border-blue-200
-          bg-white shadow-2xl rounded-lg px-6 py-3
+          bg-white shadow-2xl rounded-lg p-2 sm:px-6 sm:py-3
           backdrop-blur-md"
           >
             <div className="flex flex-col gap-2 w-full">
-              <div className="max-h-[200px] overflow-auto">
+              <div className="max-h-[200px] overflow-auto p-1">
                 <div className="text-xs sm:text-sm font-medium text-gray-600">
                   {details}
                 </div>
@@ -49,14 +56,14 @@ const StepMovement = () => {
                 <Button
                   onClick={prev}
                   disabled={!hasPrev}
-                  className="bg-white text-blue-600 hover:bg-gray-100/50 border"
+                  className={`bg-white ${primaryLightColors.text} ${secondaryLightColors.bgHover} border`}
                 >
                   Back
                 </Button>
                 <Button
                   onClick={next}
                   disabled={!hasNext || !enableNextMove}
-                  className="bg-blue-600 text-white hover:bg-blue-700"
+                  className={`${primaryLightColors.bg} text-white ${primaryColors.bgHover}`}
                 >
                   Continue
                 </Button>
