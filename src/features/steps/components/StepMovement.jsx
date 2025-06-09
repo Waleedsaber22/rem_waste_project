@@ -3,15 +3,15 @@ import { Button } from "../../../components/ui/Button";
 
 import { useCurrentStep } from "../contexts/stepsContextProvider/StepsContext";
 import { useStepsContext } from "../contexts/stepsContextProvider/StepsContext";
+import StepFormDataView from "./StepFormDataView";
 
 const StepMovement = () => {
   const { next, prev } = useStepsContext();
-  const { hasPrev, hasNext, enableNextMove, details, formData } =
-    useCurrentStep();
+  const { hasPrev, hasNext, enableNextMove, details } = useCurrentStep();
 
   return (
     <>
-      <div className="mt-[150px]"></div>
+      <div className="mt-[180px]"></div>
       <motion.div
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -22,17 +22,17 @@ const StepMovement = () => {
       backdrop-blur-md"
       >
         <div className="flex flex-col gap-2 w-full">
-          <div className="max-h-[80px] overflow-auto">
+          <div className="max-h-[130px] overflow-auto">
             <div className="text-xs sm:text-sm font-medium text-gray-600">
               {details}
             </div>
-            {formData?.render}
+            <StepFormDataView />
           </div>
           <div className="flex gap-4 items-center justify-end w-full">
             <Button
               onClick={prev}
               disabled={!hasPrev}
-              className="bg-blue-600 text-white hover:bg-blue-700"
+              className="bg-white text-blue-600 hover:bg-gray-100/50 border"
             >
               Back
             </Button>

@@ -12,7 +12,7 @@ const Sidebar = ({
   titleClassName = "",
 }) => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   const SidebarContent = (
     <div className={`w-64 bg-white shadow-lg h-full ${className}`}>

@@ -1,8 +1,11 @@
 import { ImageOffIcon } from "lucide-react";
 import SelectSkip from "../contents/selectSkip/SelectSkip";
+import { useCurrentStep } from "../contexts/stepsContextProvider/StepsContext";
 
-const StepContent = ({ view }) => {
-  switch (view) {
+const StepContent = () => {
+  const data = useCurrentStep();
+
+  switch (data.key) {
     case "selectSkip":
       return <SelectSkip />;
     default:

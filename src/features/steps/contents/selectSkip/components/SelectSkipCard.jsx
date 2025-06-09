@@ -28,10 +28,9 @@ const SelectSkipCard = ({ id, size, hirePeriod, priceBeforeVat, onSelect }) => {
     <div
       onClick={onSelect}
       className={`m-auto cursor-pointer flex flex-col justify-between ${
-        selectedCard ? "outline outline-blue-700" : ""
-      } relative
-    bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl
-    transition-shadow duration-300 w-full max-w-sm`}
+        selectedCard ? "outline outline-blue-700 shadow-xl" : "shadow-md"
+      } relative bg-white rounded-2xl overflow-hidden hover:shadow-lg
+      transition-shadow duration-300 w-full max-w-sm`}
     >
       {selectedCard ? (
         <div className="absolute w-full p-2 bg-gray-100">
