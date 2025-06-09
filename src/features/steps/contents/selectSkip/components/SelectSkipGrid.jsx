@@ -26,9 +26,9 @@ const SelectSkipGrid = ({ skipOptions, skeleton }) => {
             price_before_vat: "__",
           }))
         : skipOptions
-      )?.map((skip) => (
+      )?.map((skip, index) => (
         <SelectSkipCard
-          key={skip.id}
+          key={skip.id || index}
           id={skip.id}
           skeleton={skip.skeleton}
           size={skip.size}
