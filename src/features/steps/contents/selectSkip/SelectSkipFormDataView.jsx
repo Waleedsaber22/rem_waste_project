@@ -15,7 +15,7 @@ const SelectSkipFormDataView = () => {
         {!allowed_on_road ? (
           <SkipCardWarning
             className="w-[100px] sm:w-fit"
-            positionClassName="top-[calc(100%-40px)] left-[20px]"
+            positionClassName="top-[calc(100%-45px)] sm:top-[calc(100%-40px)] left-[5px] sm:left-[20px]"
             warningMsg={"Not Allowed on The Road"}
           />
         ) : null}
