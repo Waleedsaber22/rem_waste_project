@@ -38,7 +38,7 @@ const Sidebar = ({
       {!isOpen && isMobile ? (
         <Button
           onClick={() => setIsOpen((prev) => !prev)}
-          className="fixed top-4 left-4 z-50 p-2 bg-white shadow-lg rounded-md z-auto top-0 left-0"
+          className="fixed top-4 left-4 z-50 p-2 bg-white shadow-lg rounded-md"
         >
           <Menu size={20} />
         </Button>
