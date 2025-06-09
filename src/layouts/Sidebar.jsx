@@ -11,18 +11,22 @@ const Sidebar = ({
   className = "",
   titleClassName = "",
 }) => {
-  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const isMobile = useMediaQuery({ maxWidth: 767 });
   const [isOpen, setIsOpen] = useState(false);
 
   const SidebarContent = (
-    <div className={`w-64 bg-white shadow-lg h-full ${className}`}>
+    <div
+      className={`sidebar--content w-64 bg-white shadow-lg h-full ${className}`}
+    >
       <div
         className={`flex justify-between items-center mb-4 ${titleClassName}`}
       >
         <h2 className="text-xl font-bold">{title}</h2>
-        <button onClick={() => setIsOpen(false)} className={"md:hidden"}>
-          <X className="cursor-pointer" size={20} />
-        </button>
+        {isMobile ? (
+          <button onClick={() => setIsOpen(false)}>
+            <X className="cursor-pointer" size={20} />
+          </button>
+        ) : null}
       </div>
       {children}
     </div>
@@ -34,7 +38,7 @@ const Sidebar = ({
       {!isOpen && isMobile ? (
         <Button
           onClick={() => setIsOpen((prev) => !prev)}
-          className="fixed top-4 left-4 z-50 p-2 bg-white shadow-lg rounded-md md:relative md:z-auto md:top-0 md:left-0"
+          className="fixed top-4 left-4 z-50 p-2 bg-white shadow-lg rounded-md z-auto top-0 left-0"
         >
           <Menu size={20} />
         </Button>
@@ -42,14 +46,7 @@ const Sidebar = ({
 
       {/* Mobile Overlay */}
       <Transition show={isMobile && isOpen} as={React.Fragment}>
-        <Dialog
-          as="div"
-          className="relative z-40"
-          onClick={() => {
-            // setIsOpen((val) => !val);
-          }}
-          onClose={() => {}}
-        >
+        <Dialog as="div" className="relative z-40" onClose={() => {}}>
           <TransitionChild
             as={motion.div}
             initial={{ opacity: 0 }}
@@ -57,7 +54,17 @@ const Sidebar = ({
             exit={{ opacity: 0 }}
             className="fixed inset-0 bg-black/30"
           />
-          <div className="fixed inset-0 flex">
+          <div
+            onClick={(e) => {
+              if (
+                !e.target.closest(".sidebar--content") ||
+                e.target.closest(".enable-sidebar-close")
+              ) {
+                setIsOpen(false);
+              }
+            }}
+            className="fixed inset-0 flex"
+          >
             <TransitionChild
               as={motion.div}
               initial={{ x: "-100%" }}

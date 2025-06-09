@@ -24,7 +24,6 @@ const StepMovement = () => {
   }, [enableNextMove]);
   return (
     <>
-      <div className="mt-[50px]"></div>
       <Button
         onClick={() => setCollapsed((prev) => !prev)}
         className={`fixed z-[100] bottom-[20px] right-[-10px] sm:right-0 -translate-x-1/2 z-50 

@@ -13,7 +13,12 @@ const Stepper = ({
   const { setCurrentStep } = useStepsContext();
   const currentStep = useCurrentStep();
 
-  const allowTillOrder = enableStickWithOrder ? currentStep.order : undefined;
+  const allowTillOrder = enableStickWithOrder
+    ? currentStep.enableNextMove
+      ? currentStep.order + 1
+      : currentStep.order
+    : undefined;
+
   return (
     <ol className={`space-y-4 ${className}`}>
       {steps.map(({ key, label, Icon }, index) => {
@@ -22,7 +27,7 @@ const Stepper = ({
           <li
             onClick={() => setCurrentStep(key)}
             key={key}
-            className={`pl-4 border-l-4 transition-colors duration-300
+            className={`enable-sidebar-close pl-4 border-l-4 transition-colors duration-300
             ${
               index + 1 > allowTillOrder
                 ? "border-gray-300 text-gray-400 pointer-events-none"

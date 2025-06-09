@@ -7,7 +7,7 @@ import { useThemeContext } from "../contexts/themeContextProvider/ThemeContext";
 const Layout = ({ children }) => {
   const { primaryDarkColors, secondaryLightColors } = useThemeContext();
   return (
-    <div className="min-h-screen flex flex-col md:flex-row">
+    <div className="min-h-screen flex flex-row">
       <StepsProvider>
         <Sidebar
           titleClassName={`${primaryDarkColors.bg} text-white p-2`}

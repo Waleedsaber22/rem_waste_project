@@ -1,3 +1,4 @@
+import { createPortal } from "react-dom";
 import { useThemeContext } from "../../../contexts/themeContextProvider/ThemeContext";
 import { useCurrentStep } from "../contexts/stepsContextProvider/StepsContext";
 import StepContent from "./StepContent";
@@ -20,7 +21,9 @@ const StepView = () => {
     <div>
       <StepHeader />
       <StepContent />
-      <StepMovement />
+      <div className="mt-[50px]"></div>
+
+      {createPortal(<StepMovement />, document.body)}
     </div>
   );
 };
