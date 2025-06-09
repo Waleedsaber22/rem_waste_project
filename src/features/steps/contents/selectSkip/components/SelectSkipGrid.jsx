@@ -22,6 +22,7 @@ const SelectSkipGrid = ({ skipOptions }) => {
           key={skip.id}
           id={skip.id}
           size={skip.size}
+          allowedOnRoad={skip.allowed_on_road}
           hirePeriod={skip.hire_period_days}
           priceBeforeVat={skip.price_before_vat}
           onSelect={() => handleSelect(skip)}

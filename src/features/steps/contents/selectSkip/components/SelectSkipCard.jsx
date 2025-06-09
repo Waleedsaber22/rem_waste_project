@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "../../../../../components/ui/Button";
-import { Check } from "lucide-react";
+import { AlertCircle, Check } from "lucide-react";
 import { useCurrentStep } from "../../../contexts/stepsContextProvider/StepsContext";
 const SelectSkipCardImage = ({ url, size }) => {
   const [isError, setIsError] = useState(null);
@@ -13,15 +13,39 @@ const SelectSkipCardImage = ({ url, size }) => {
       ) : (
         <img
           src={url}
+          loading="lazy"
           alt={`${size} yarder skip`}
           onError={() => setIsError(true)}
-          className="m-auto w-full h-auto max-w-[250px] object-contain"
+          className="m-auto w-full h-[200px] max-w-[250px] object-contain"
         />
       )}
     </>
   );
 };
-const SelectSkipCard = ({ id, size, hirePeriod, priceBeforeVat, onSelect }) => {
+export const SkipCardWarning = ({
+  warningMsg = "",
+  positionClassName = "",
+  className = "",
+}) => (
+  <div
+    className={`bg-yellow-700/90 rounded-sm p-0.75 sm:p-1  text-xs sm:text-[13px] font-medium
+            absolute ${
+              positionClassName ? positionClassName : "top-0 left-0"
+            } flex gap-2 items-center justify-center text-gray-100 ${className}`}
+  >
+    <AlertCircle size={17} className="shrink-0" />
+
+    {warningMsg}
+  </div>
+);
+const SelectSkipCard = ({
+  id,
+  size,
+  hirePeriod,
+  allowedOnRoad,
+  priceBeforeVat,
+  onSelect,
+}) => {
   const { formData } = useCurrentStep();
   const selectedCard = formData ? formData.id === id : false;
   return (
@@ -44,7 +68,13 @@ const SelectSkipCard = ({ id, size, hirePeriod, priceBeforeVat, onSelect }) => {
 
       <div className="space-y-2">
         <div className="flex flex-col gap-2 p-4">
-          <div className="text-lg font-semibold">
+          {!allowedOnRoad && !selectedCard ? (
+            <SkipCardWarning
+              className="!rounded-br-md !rounded-none"
+              warningMsg={"Not Allowed on The Road"}
+            />
+          ) : null}
+          <div className="text-lg font-semibold text-blue-900">
             Hire for {hirePeriod} days
           </div>
           <div className="flex justify-between">

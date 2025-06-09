@@ -1,12 +1,21 @@
 import React from "react";
 import { useCurrentStep } from "../../contexts/stepsContextProvider/StepsContext";
+import { SkipCardWarning } from "./components/SelectSkipCard";
 
 const SelectSkipFormDataView = () => {
   const { formData } = useCurrentStep();
   if (formData) {
-    const { price_before_vat, hire_period_days, size } = formData;
+    const { price_before_vat, hire_period_days, allowed_on_road, size } =
+      formData;
     return (
       <div className="mt-2 flex gap-w items-center justify-around">
+        {!allowed_on_road ? (
+          <SkipCardWarning
+            className="w-[100px] sm:w-fit"
+            positionClassName="top-[calc(100%-40px)] left-[20px]"
+            warningMsg={"Not Allowed on The Road"}
+          />
+        ) : null}
         <div className="grow text-black bg-blue-800 rounded-lg text-white p-1 text-center">
           {size} Yards
         </div>
