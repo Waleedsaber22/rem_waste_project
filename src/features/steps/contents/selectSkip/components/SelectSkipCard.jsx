@@ -88,7 +88,7 @@ const SelectSkipCard = ({
       transition-shadow duration-300 w-full max-w-sm`}
     >
       {selectedCard ? (
-        <div className={`absolute w-full p-2 ${secondaryLightColors.bg}`}>
+        <div className={`absolute z-10 w-full p-2 ${secondaryLightColors.bg}`}>
           <Check className={`${primaryColors.text}`} />
         </div>
       ) : null}

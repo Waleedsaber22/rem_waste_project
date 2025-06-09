@@ -3,7 +3,7 @@ import { stepsUtils } from "../../utils";
 
 const steps = stepsUtils.convertStepsArrToObj(stepsData);
 export const initialStepState = {
-  currentStepKey: stepsData[0]?.key,
+  currentStepKey: "selectSkip",
   steps,
 };
 
