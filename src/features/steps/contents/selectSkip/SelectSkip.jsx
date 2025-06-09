@@ -11,9 +11,9 @@ const SelectSkip = () => {
   return (
     <div>
       {error ? (
-        <div className="flex flex-col gap-2 items-center justify-center p-8 lg:p-16 text-red-400">
+        <div className="flex flex-col gap-2 items-center justify-center p-8 lg:p-16 text-red-600/80 mt-16">
           <CircleOff size={80} />
-          {error}
+          <span className="font-medium">{error}</span>
         </div>
       ) : (
         <SelectSkipGrid
