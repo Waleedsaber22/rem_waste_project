@@ -17,11 +17,34 @@ export const stepsUtils = {
           order: index + 1,
           hasNext: arr.length !== index + 1,
           hasPrev: index !== 0,
-          data: {},
+          formData: null,
           ...curr,
         },
       }),
       {}
     );
+  },
+  getStepsLocalStoragefromData(currentSteps) {
+    const stepsSession = {
+      form: {},
+      currentStepKey: currentSteps.currentStepKey,
+    };
+    const stepsFormData = stepsSession.form;
+    const stepsDetails = currentSteps.steps;
+    Object.keys(stepsDetails).forEach((key) => {
+      stepsFormData[key] = stepsDetails[key].formData;
+    });
+    return stepsSession;
+  },
+  mergeStepsLocalStorageIntoData(localStorage, currentSteps) {
+    if (!localStorage) return;
+    currentSteps.currentStepKey =
+      localStorage.currentStepKey || currentSteps.currentStepKey;
+    const stepsDetails = currentSteps.steps;
+    Object.keys(stepsDetails).forEach((key) => {
+      stepsDetails[key].formData =
+        localStorage.form[key] || stepsDetails[key].formData;
+    });
+    return currentSteps;
   },
 };

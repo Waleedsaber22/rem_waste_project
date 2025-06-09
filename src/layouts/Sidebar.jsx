@@ -21,7 +21,7 @@ const Sidebar = ({
       >
         <h2 className="text-xl font-bold">{title}</h2>
         <button onClick={() => setIsOpen(false)} className={"md:hidden"}>
-          <X size={20} />
+          <X className="cursor-pointer" size={20} />
         </button>
       </div>
       {children}
@@ -45,7 +45,10 @@ const Sidebar = ({
         <Dialog
           as="div"
           className="relative z-40"
-          onClose={() => setIsOpen(false)}
+          onClick={() => {
+            // setIsOpen((val) => !val);
+          }}
+          onClose={() => {}}
         >
           <TransitionChild
             as={motion.div}

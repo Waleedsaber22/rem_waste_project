@@ -8,6 +8,7 @@ export const initialStepState = {
 };
 
 export const stepsReducer = (state, action) => {
+  let newState = state;
   switch (action.type) {
     case "NEXT":
     case "PREV": {
@@ -15,25 +16,38 @@ export const stepsReducer = (state, action) => {
       const index =
         stepsUtils.getStepOrderByKey(stepsData, state.currentStepKey) - 1;
       const movedStep = stepsData[index + move]?.key;
-      return movedStep ? { ...state, currentStepKey: movedStep } : state;
+      newState = movedStep ? { ...state, currentStepKey: movedStep } : state;
+      break;
     }
 
     case "SET_STEP":
-      return { ...state, currentStepKey: action.payload };
-    case "SET_DATA":
-      return {
+      newState = { ...state, currentStepKey: action.payload };
+      break;
+
+    case "SET_DATA": {
+      const stepKey = action.payload.key || state.currentStepKey;
+      newState = {
         ...state,
         steps: {
           ...state.steps,
-          [action.payload.key]: {
-            ...state.steps[action.payload.key],
-            data: action.payload.value,
+          [stepKey]: {
+            ...state.steps[stepKey],
+            ...action.payload.props,
+            formData: action.payload.value,
           },
         },
       };
-    case "RESET":
-      return initialStepState;
+
+      break;
+    }
+    case "RESET": {
+      newState = initialStepState;
+      break;
+    }
     default:
-      return state;
+      break;
   }
+
+  newState.updateLocalStorage?.();
+  return newState;
 };

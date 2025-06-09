@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "../../../../../components/ui/Button";
 import { Check } from "lucide-react";
+import { useCurrentStep } from "../../../contexts/stepsContextProvider/StepsContext";
 const SelectSkipCardImage = ({ url, size }) => {
   const [isError, setIsError] = useState(null);
   return (
@@ -20,17 +21,23 @@ const SelectSkipCardImage = ({ url, size }) => {
     </>
   );
 };
-const SelectSkipCard = ({ size, hirePeriod, priceBeforeVat, onSelect }) => {
+const SelectSkipCard = ({ id, size, hirePeriod, priceBeforeVat, onSelect }) => {
+  const { formData } = useCurrentStep();
+  const selectedCard = formData ? formData.id === id : false;
   return (
     <div
       onClick={onSelect}
-      className="m-auto cursor-pointer flex flex-col justify-between border border-blue-700 relative
+      className={`m-auto cursor-pointer flex flex-col justify-between ${
+        selectedCard ? "outline outline-blue-700" : ""
+      } relative
     bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl
-    transition-shadow duration-300 w-full max-w-sm"
+    transition-shadow duration-300 w-full max-w-sm`}
     >
-      <div className="absolute w-full p-2 bg-gray-100">
-        <Check className="text-blue-700" />
-      </div>
+      {selectedCard ? (
+        <div className="absolute w-full p-2 bg-gray-100">
+          <Check className="text-blue-700" />
+        </div>
+      ) : null}
       <SelectSkipCardImage
         size={size}
         url={`/skips/skip-sizes/${size}-yarder-skip.jpg`}
