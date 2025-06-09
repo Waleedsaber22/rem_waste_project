@@ -3,24 +3,39 @@ import { Button } from "../../../../../components/ui/Button";
 import { AlertCircle, Check } from "lucide-react";
 import { useCurrentStep } from "../../../contexts/stepsContextProvider/StepsContext";
 import { useThemeContext } from "../../../../../contexts/themeContextProvider/ThemeContext";
-const SelectSkipCardImage = ({ url, size }) => {
+import Skeleton from "../../../../../components/ui/Skeleton";
+const SelectSkipCardImage = ({ url, size, skeleton }) => {
   const [isError, setIsError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   return (
-    <>
-      {isError ? (
-        <div className="bg-gray-100 h-40 flex items-center justify-center text-gray-400 text-xl font-semibold">
+    <div className="relative h-[200px]">
+      {skeleton ? null : isError ? (
+        <div className="bg-gray-100 h-full flex items-center justify-center text-gray-400 text-xl font-semibold">
           Skip Size {size} yd³
         </div>
       ) : (
         <img
+          onLoad={() => {
+            setIsLoading(false);
+          }}
           src={url}
           loading="lazy"
           alt={`${size} yarder skip`}
-          onError={() => setIsError(true)}
-          className="m-auto w-full h-[200px] max-w-[250px] object-contain"
+          onError={() => {
+            setIsLoading(false);
+            setIsError(true);
+          }}
+          className="m-auto w-full h-full max-w-[250px] object-contain"
         />
       )}
-    </>
+      {isLoading ? (
+        <Skeleton
+          skeletonBg="bg-blue-100"
+          className="top-0 left-0 absolute h-[200px] w-full"
+          rounded={false}
+        />
+      ) : null}
+    </div>
   );
 };
 export const SkipCardWarning = ({
@@ -51,6 +66,7 @@ const SelectSkipCard = ({
   allowedOnRoad,
   priceBeforeVat,
   onSelect,
+  skeleton,
 }) => {
   const {
     primaryColors,
@@ -77,6 +93,7 @@ const SelectSkipCard = ({
         </div>
       ) : null}
       <SelectSkipCardImage
+        skeleton={skeleton}
         size={size}
         url={`/skips/skip-sizes/${size}-yarder-skip.jpg`}
       />
@@ -94,18 +111,30 @@ const SelectSkipCard = ({
           <div className="flex justify-between">
             <div>
               <div className="text-sm text-gray-500">Price</div>
-              <div className={`text-xl font-bold ${primaryLightColors.text}`}>
-                £{priceBeforeVat}
-              </div>
+              {!skeleton ? (
+                <div className={`text-xl font-bold ${primaryLightColors.text}`}>
+                  £{priceBeforeVat}
+                </div>
+              ) : (
+                <Skeleton className={`mt-2 w-16 h-[20px]`} />
+              )}
             </div>
             <div>
               <div className="text-sm text-gray-500">Size</div>
-              <div className="text-lg font-bold text-black">{size} Yards</div>
+              <div className="text-lg font-bold text-black">
+                {!skeleton ? (
+                  size
+                ) : (
+                  <Skeleton className={`inline px-3 mr-1 h-[20px]`} />
+                )}{" "}
+                Yards
+              </div>
             </div>
           </div>
         </div>
 
         <Button
+          disabled={skeleton}
           className={`${secondaryLightColors.bg} ${secondaryColors.bgHover} ${primaryColors.text} w-full`}
           variant="primary"
         >
